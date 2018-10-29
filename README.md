@@ -1,6 +1,3 @@
-# rescue-maps
-PECFEST 2018 Hackathon Project 
-
 # Rescue Maps
 We here at Rescue Maps strive to help those caught in distress situations by creating a network of organizations and people who can share their resources in their proximity for the needy, thus speeding up the overall process of disaster relief
 
