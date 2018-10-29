@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "Circular";
+  src: url('fonts/CircularStd-Book.woff')format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+.card1::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+} 
+::-webkit-scrollbar-track {
+    background: white;
+}
+::-webkit-scrollbar-thumb {
+    background: #024c71;
+}
+body{
+  box-sizing: border-box;
+  font-family: "Circular" !important;
+}
+.background{
+  background-image: url("images/water-back.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 10px;
+}
+.content-1, .content-2{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.content-inner{
+  width: 45%;
+  margin: 10px;
+  min-height: 40vh;
+}
+#container {
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+.card
+{
+  border:none !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card-header{
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  background-color: #3279b1 !important;
+}
+.card-body{
+  font-size: 15px;
+}
+.form-control{
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 2px solid #3279b1 !important;
+}
+.form-control:focus{
+  box-shadow: none !important;
+}
+.heading{
+  color: white;
+  font-size: 22px;
+  padding-top: 10px;
+  text-align: center;
+}
+.card1{
+  padding: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 40vh;
+  width: 90% !important;
+  margin: 10px;
+  overflow: scroll !important;
+  overflow-x: auto !important;
+  display: block !important;
+}
+.table{
+  border-radius: 10px !important;
+  border-collapse: separate;
+  border-spacing: 0px 5px;
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: 
+}
+.table tr{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.table td, th{
+  text-align: center !important;
+}
+.table th{
+  background-color: #3279b1;
+  color: white;
+}
+.btn{
+  background-color: #3279b1;
+  color: white !important;
+  min-width: 150px;
+}
+.btn:hover{
+  color: white !important;
+}
+.footer{
+  text-align: center;
+  padding-top: 100px;
+}
+
+@media (max-width: 768px){
+  .content-inner{
+    width: 100%;
+  }
+}

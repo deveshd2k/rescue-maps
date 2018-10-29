@@ -1,0 +1,116 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Survey</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'survey_css.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script>
+function myFunction() {
+    alert("Thank you for your feedback!");
+}
+
+function check3(ans) {
+    document.getElementById("amenities").value=ans;
+}
+function check1(ans) {
+    document.getElementById("waterlevel").value=ans;
+}
+function check2(ans) {
+    document.getElementById("levelchange").value=ans;
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("select.select-list").change(function(){
+        var selectedvalue = $(this).children("option:selected").val();
+        $('#rescueHome').val(selectedvalue);
+    });
+});
+</script>
+</head>
+<body>
+<div class="background">
+  <div class="container">
+    <div class="card">
+      <div class="card-header">Please fill out this survey to help us serve you better</div>
+      <div class="card-body">
+        <form method="POST">{% csrf_token %}
+            <div class="form-group">
+              <label for="comment" class="comment-head">Q.1  What requirements do you feel are missing in your rescue home?</label>
+              <select class="form-control select-list" id="sel1" name="sellist1">
+                {% for data in instance %}
+                <option>{{data.rescueHome}}</option>
+                {% endfor %}
+              </select><br>
+              <input type="text" name="rescueHome" id="rescueHome" class="inputhide">
+              <label class="container-1">Food
+                <input type="radio" name="radio-2" checked="checked" value="Food" onclick="check3(this.value)">
+                <span class="checkmark-1"></span>
+              </label>
+              <label class="container-1">Water
+                <input type="radio" name="radio-2" value="Water" onclick="check3(this.value)">
+                <span class="checkmark-1"></span>
+              </label>
+              <label class="container-1">Shelter
+                <input type="radio" name="radio-2" value="Shelter" onclick="check3(this.value)">
+                <span class="checkmark-1"></span>
+              </label>
+              <label class="container-1">Clothing
+                <input type="radio" name="radio-2" value="Clothing" onclick="check3(this.value)">
+                <span class="checkmark-1"></span>
+              </label>
+              <label class="container-1">Medical Attention
+                <input type="radio" name="radio-2" value="Medical Attention" onclick="check3(this.value)">
+                <span class="checkmark-1"></span>
+              </label>
+            </div>
+            <input type="text" name="amenities" id="amenities" value="Food" class="inputhide">
+            <div class="form-group">
+              <label for="comment" class="comment-head">Q.2 What is the prevalent water level in your area?</label>
+              <label class="container-2">Low
+                <input type="radio" checked="checked" name="radio" value="Low" onclick="check1(this.value)">
+                <span class="checkmark-2"></span>
+              </label>
+              <label class="container-2">Medium
+                <input type="radio" name="radio" value="Medium" onclick="check1(this.value)">
+                <span class="checkmark-2"></span>
+              </label>
+              <label class="container-2">High
+                <input type="radio" name="radio" value="High" onclick="check1(this.value)">
+                <span class="checkmark-2"></span>
+              </label>
+            </div>
+            <input type="text" name="waterlevel" id="waterlevel" value="Low" class="inputhide">
+            <div class="form-group">
+              <label for="comment" class="comment-head">Q.3 How is the water level changing in your area?</label>
+              <label class="container-3">Increasing
+                <input type="radio" name="radio-1" value="Increasing" onclick="check2(this.value)">
+                <span class="checkmark-3"></span>
+              </label>
+              <label class="container-3">Decreasing
+                <input type="radio" name="radio-1" checked="checked" value="Decreasing" onclick="check2(this.value)">
+                <span class="checkmark-3"></span>
+              </label>
+            </div>
+            <input type="text" name="levelchange" id="levelchange" value="Decreasing" class="inputhide">
+            <div class="form-group">
+              <label for="comment" class="comment-head">Q.4 Please provide us with your valuable feedback on how we can improve our services.</label>
+              <input type="text" class="form-control" name="feedback" placeholder="Enter feedback here" required>
+            </div>
+          <div class="card-footer">
+            <button type="submit" class="btn" onclick="myFunction()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

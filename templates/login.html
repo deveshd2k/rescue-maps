@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Enter details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'login_css.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="background">
+  <div class="container">
+    <div class="card">
+      {% block content %}
+      <div class="card-header">Login</div>
+      <div class="card-body">
+        <form method="POST">{% csrf_token %}
+            {% if form.errors %}
+                  <span class="error">Wrong credentials</span>
+            {% endif %}
+            <div class="form-group">
+              <input type="text" class="form-control" name="username" placeholder="Username" required autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" name="password" placeholder="Password" required autocomplete="off">
+            </div>
+      </div>
+      <div class="card-footer">
+          <button type="submit" class="btn">Login</button>
+          <a class="btn" href="{% url 'signup' %}">Signup</a>
+      </div>
+        </form>
+      {% endblock %}
+    </div>
+  </div>
+  </div>
+</body>
+</html>

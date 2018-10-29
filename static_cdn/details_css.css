@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "Circular";
+  src: url('fonts/CircularStd-Book.woff')format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+body{
+  box-sizing: border-box;
+  font-family: "Circular" !important;
+}
+.background{
+  background-image: url("images/water-back.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
+.card
+{
+  width: 50%;
+  margin-top: 20vh !important;
+  margin: 0 auto;
+  border:none !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card-header{
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  background-color: #3279b1 !important;
+}
+.form-control{
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 2px solid #3279b1 !important;
+}
+.form-control:focus{
+  box-shadow: none !important;
+}
+.card-footer{
+  background-color: white !important;
+  border: none !important;
+  text-align: center;
+}
+.btn{
+  background-color: #3279b1;
+  color: white;
+  width: 150px;
+}
+.btn:hover{
+  color: white !important;
+}
+@media (max-width:600px){
+  .card{
+    width: 100%;
+    margin-top: 10vh !important;
+  }
+  .container{
+    padding: 30px !important;
+  }
+}

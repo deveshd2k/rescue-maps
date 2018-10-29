@@ -1,0 +1,85 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rescue Maps</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'base.css' %}">
+<link rel="stylesheet" href="{% static 'animation.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="{% static 'animate.js' %}" type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+</head>
+<body>
+  <div class="background">
+    <div class="heading fade-in one">
+      Select a role to proceed:
+      <div class="buttons">
+        <a href="user_map" role="button" class="btn">Individual</a>
+        <a href="login" role="button" class="btn">Organization</a>
+      </div>
+    </div>
+    <div class="arrow bounce">
+      <a class="fa fa-angle-double-down fa-2x" href="#about-us"></a>
+    </div>
+  </div>
+  <div class="about-us" id="about-us">
+    <div class="head hideme">
+      What we do?
+      <hr>
+    </div>
+    <div class="mini-head hideme">
+      Our main aim is to provide individuals with the ability to locate rescue homes nearby and facilitate the process of evacuation with organizations
+      looking to set up rescue homes by displaying proper locations. We use various parameters at work like rain and water level among other factors and
+      geographical locations are filtered based upon these factors. We try to provide a complete rescue solution in case of disaster by doing so.
+    </div>
+    <div class="content">
+      <div class="hideme">
+        <center><span style="font-size:24px; font-family:sans-serif; font-weight:bold;">What are the benefits to an individual?</span><hr class="line"></center>
+        In the grave hours of need, we work on sharing your status with the relief organizations so that they can set up relief camps in your proximity and
+        help you in every way possible fulfilling your concerns by giving food, shelter, medicines, etc. and you can also do your bit by making your resources
+        available and helping other victims around you fulfilling their needs.
+      </div>
+      <div class="hideme">
+        <center><span style="font-size:24px; font-family:sans-serif; font-weight:bold;">How an organization can contribute?</span><hr class="line"></center>
+        We provide you with the possible locations prone to heavy flooding around and mentions the various requirements at each of these homes where you thus
+        being able to save lives, tend to the sick, maintaining normal services by setting up relief camps, making accommodation available, providing the necessary
+        requirements of the victims
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    All Rights Reserved
+  </div>
+</body>
+</html>

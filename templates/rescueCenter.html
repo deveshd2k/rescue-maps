@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Density Map</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <style>
+        #map {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+        }
+        #lattitude, #longitude{
+            display: none;
+        }
+        body {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        .background{
+          background-image: url("{% static 'images/water-back.jpg' %}");
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          height: 100vh;
+          padding: 20px;
+      }
+        .ghbtns {
+            position: relative;
+            top: 4px;
+            margin-left: 5px;
+        }
+
+        a {
+            color: #0077ff;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="background">
+   <div id="map"></div>
+   <form method="POST">{% csrf_token %}
+    <input type="text" name="lattitude" id="lattitude">
+    <input type="text" name="longitude" id="longitude">
+   </form>
+
+    <script src="{% static 'leaflet-heat.js' %}"></script>
+
+    <script src="{% static 'data.js' %}"></script>
+    <script>
+
+        var map = L.map('map', {
+            minZoom: 10,
+            maxZoom: 20
+        }).setView([9.89,76.52], 14);
+        map.on('click', function (e) {
+            var coord = e.latlng;
+            var lat = coord.lat;
+            var lng = coord.lng;
+            document.getElementById("lattitude").value = lng;
+            document.getElementById("longitude").value = lat;
+        });
+        var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+
+        addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
+
+        var heat = L.heatLayer(addressPoints).addTo(map);
+
+    </script>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Your map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'individual-map_css.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+  integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+  crossorigin=""></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+<script src="https://rawgit.com/Asymmetrik/leaflet-d3/master/dist/leaflet-d3.js" charset="utf-8"></script>
+<script>
+  $(document).ready(function(){
+    $("#btn").click(function(){
+        $(".container-1").toggle(800);
+    });
+});
+</script>
+</head>
+<body>
+<div class="background">
+  <div class="heading">
+    This map provides you with the information about prevalent water level in your vicinity. It also displays the rescue homes
+    set up in the safe areas around you.
+  </div>
+  <div class="content">
+    <div class="map" id="mapid">
+    </div>
+    <div class="org-info">
+      <div class="container">
+        <div class="card">
+          <div class="card-header">Click on the rescue homes on map to get information about them</div>
+          <div class="card-body">
+            <form>
+                <div class="form-group">
+                  <label for="name">Rescue Home:</label>
+                  <input type="text" class="form-control" name="name" id="rescueHome" disabled >
+                </div>
+                <div class="form-group">
+                  <label for="contact">Contact Number:</label>
+                  <input type="text" class="form-control" name="contact" id="contact" disabled >
+                </div>
+            <div class="form-group" style="display: none;">
+              <input type="text" class="form-control" name="lattitude" id="lattitude" placeholder="Lattitude" disabled >
+            </div>
+            <div class="form-group" style="display: none;">
+              <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude" disabled >
+            </div>
+                <div class="form-group ">
+                  <label>Please take the following survey to help us serve you better:</label>
+                  <a role="button" href="survey" class="btn">Start survey</a>
+                  <a role ="button" class="btn" id="btn">Register for rescue center</a>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container container-1">
+    <div class="card card-1">
+      {% block content %}
+      <div class="card-header">Enter your details here</div>
+      <div class="card-body">
+        <form method="POST">{% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" name="username" id="username" placeholder="Organization username" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="name" placeholder="Enter your Name" required autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="email" placeholder="Enter your email" required autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="contact" placeholder="Your contact" required autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" name="family" placeholder="Number of family numbers" required autocomplete="off" min="1" max="5">
+            </div>
+      </div>
+      <div class="card-footer card1-footer">
+          <button type="submit" class="btn">Submit</button>
+      </div>
+        </form>
+        {% endblock %}
+    </div>
+  </div>
+</div>
+
+<script>
+var center = [9.90,76.43];
+var mymap = L.map('mapid',{minZoom:2,maxZoom:11}).setView(center,10);
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(mymap);
+
+var options = {
+    radius : 12,
+    opacity: 0.5,
+    duration: 500,
+    radiusRange: [15,15]
+};
+var options1 = {
+    radius : 12,
+    opacity: 0.5,
+    duration: 500,
+    radiusRange: [15,15]
+};
+var options2 = {
+    radius : 12,
+    opacity: 0.5,
+    duration: 500,
+    radiusRange: [15,15]
+};
+var hexLayer = L.hexbinLayer(options).addTo(mymap);
+var hexLayer1 = L.hexbinLayer(options1).addTo(mymap);
+var hexLayer2 = L.hexbinLayer(options2).addTo(mymap);
+hexLayer.colorScale().range(['green','green']);
+hexLayer1.colorScale().range(['red','red']);
+hexLayer2.colorScale().range(['yellow','yellow']);
+
+$.ajax({
+  url : "https://api.myjson.com/bins/oesg0",
+  type:"GET",
+  dataType:"json",
+  success:function(res){
+    hexLayer.data(res);
+   }
+});
+$.ajax({
+  url : "https://api.myjson.com/bins/ku6tc",
+  type:"GET",
+  dataType:"json",
+  success:function(res){
+    hexLayer1.data(res);
+  }
+});
+$.ajax({
+  url : "https://api.myjson.com/bins/lfmf4",
+  type:"GET",
+  dataType:"json",
+  success:function(res){
+    hexLayer2.data(res);
+  }
+});
+var arr = [];
+{% for data,index in values %}
+var marker = L.marker(["{{data.longitude}}","{{data.lattitude}}"]).addTo(mymap).on('click',onClick);
+arr.push(["{{data.lattitude}}","{{data.rescueHome}}","{{data.contact}}","{{data.username}}"]);
+{% endfor %}
+console.log(arr);
+
+function onClick(e){
+  var a =this.getLatLng();
+  document.getElementById('lattitude').value = a.lng;
+  document.getElementById('longitude').value = a.lat;
+  console.log(a.lng);
+  for(var i=0;i<arr.length;i++)
+  {
+    if(arr[i][0]==a.lng)
+    {
+      document.getElementById("rescueHome").value = arr[i][1];
+      document.getElementById("contact").value = arr[i][2];
+      document.getElementById('username').value = arr[i][3];
+    }
+  }
+}
+
+var legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function (mymap) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = ["    SafeZone", "Moderate", "Danger  ", "Set up Rescue Home "],
+        labels = ["{% static 'images/green.png' %}", "{% static 'images/yellow.png' %}", "{% static 'images/red.png' %}", "blue"];
+    div.classList.add("legend");
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < 3; i++) {
+        div.innerHTML +=
+            (" <img src=" + labels[i] + " height='20' width='20' margin='10'>") + grades[i] + '<br>';
+    }
+    for (var i = 3; i < 4; i++) {
+        div.innerHTML +=
+            (" <i class='fa fa-map-marker' style='font-size:24px;color:" + labels[i] + "'></i>") + grades[i] + '<br>';
+    }
+
+    return div;
+};
+
+legend.addTo(mymap);
+
+</script>
+</body>
+</html>

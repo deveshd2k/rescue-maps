@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{ request.user.username }}'s Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'orgdash_css.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+  integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+  crossorigin=""></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+<script src="https://rawgit.com/Asymmetrik/leaflet-d3/master/dist/leaflet-d3.js" charset="utf-8"></script>
+<script>
+</script>
+</head>
+<body>
+  <div class="background">
+    <div class="content-1">
+      <div class="card content-inner">
+        <div class="card-header">Welcome {{ request.user.username }}</div>
+        <div class="card-body">
+          <p>Rescue Home Name: <span style="margin-left: 5px;">{{ instance.rescueHome }}</span></p>
+          <p>No. of beds available:<span style="margin-left: 5px;">{{ total }}</span></p>
+          <p>Contact Number : <span style="margin-left: 5px;">{{ instance.contact }}</span></p> 
+          <a href="{% url 'rescueCenter' %}" class="btn">Density Map</a>
+          <a href="{% url 'logout' %}" class="btn">Logout</a>
+        </div> 
+      </div>
+      <div class="card content-inner">
+        <div class="card-header">Feedback by users</div>
+        <div class="card-body" style="text-align: center;">
+          <p>Quality of services provided by your organization:</p>
+          <p>{{ avg }}%</p>
+       </div> 
+      </div>
+    </div>
+    <div class="content-2">
+      <div class="heading">List of registered entrants in your rescue home</div>
+      <div class="card card1">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Contact</th>
+              <th>No. of Members</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for data in queryset %}
+            <tr>
+              <td>{{data.name}}</td>
+              <td>{{data.email}}</td>
+              <td>{{data.contact}}</td>
+              <td>{{data.family}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

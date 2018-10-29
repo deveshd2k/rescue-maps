@@ -1,0 +1,118 @@
+@font-face {
+  font-family: "Circular";
+  src: url("fonts/CircularStd-Book.829012af195c.woff")format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: white;
+}
+::-webkit-scrollbar-thumb {
+    background: #024c71;
+}
+body{
+  box-sizing: border-box;
+  font-family: "Circular" !important;
+}
+.heading{
+  text-align: center;
+  color: white;
+  font-size: 30px;
+}
+.container-1{
+  padding: 20px;
+  display: none;
+}
+.background{
+  background-image: url("images/water-back.252fbe0d1027.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 10px;
+}
+.content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.map{
+  width: 60%;
+  margin: 10px;
+  height: 78vh;
+  border: 2px solid #3279b1;
+  border-radius: 5px;
+}
+.hexbin-hexagon {
+  stroke: #000;
+  stroke-width: 1px;
+}
+.org-info{
+  width: 30%;
+  margin: 10px;
+  min-height: 78vh;
+}
+.card
+{
+  border:none !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card-1{
+  width: 50%;
+  margin: 0 auto;
+}
+.card-header{
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  background-color: #3279b1 !important;
+}
+.form-control{
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 2px solid #3279b1 !important;
+}
+.form-control:focus{
+  box-shadow: none !important;
+}
+.form-control:disabled{
+  background-color: white !important;
+}
+.btn{
+  background-color: #3279b1;
+  color: white !important;
+  min-width: 150px;
+  margin-top: 10px;
+}
+.btn:hover{
+  color: white !important;
+}
+.card1-footer{
+  background-color: white !important;
+  border: none !important;
+  text-align: center;
+}
+.legend {
+    font-family: "Circular";
+    border-radius: 5px;
+    background-color: beige;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+@media (max-width:768px){
+  .map{
+    width: 100%;
+  }
+  .org-info{
+    width: 100%;
+  }
+  .heading{
+    font-size: 18px;
+  }
+  .card-1{
+    width: 100%;
+  }
+}

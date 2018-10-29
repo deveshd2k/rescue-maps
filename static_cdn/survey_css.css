@@ -1,0 +1,137 @@
+@font-face {
+  font-family: "Circular";
+  src: url('fonts/CircularStd-Book.woff')format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+body{
+  box-sizing: border-box;
+  font-family: "Circular" !important;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: white;
+}
+::-webkit-scrollbar-thumb {
+    background: #3279b1;
+}
+.background{
+  background-image: url("images/water-back.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 40px;
+}
+.card
+{
+  width: 80%;
+  margin: 0 auto;
+  border:none !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card-header{
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  background-color: #3279b1 !important;
+}
+.form-control{
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 2px solid #3279b1 !important;
+}
+.select-list{
+  border: 2px solid #3279b1 !important;
+  border-radius: 0 !important;
+}
+.form-control:focus{
+  box-shadow: none !important;
+}
+.comment-head{
+  font-size: 18px;
+}
+/* The container */
+.container-2, .container-3, .container-1 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container-1 input,.container-2 input, .container-3 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark-1,.checkmark-2, .checkmark-3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container-1:hover input ~ .checkmark-1,.container-2:hover input ~ .checkmark-2, .container-3:hover input ~ .checkmark-3 {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container-1 input:checked ~ .checkmark-1,.container-2 input:checked ~ .checkmark-2, .container-3 input:checked ~ .checkmark-3 {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark-1:after,.checkmark-2:after, .checkmark-3:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-1 input:checked ~ .checkmark-1:after,.container-2 input:checked ~ .checkmark-2:after, .container-3 input:checked ~ .checkmark-3:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container-1 .checkmark-1:after,.container-2 .checkmark-2:after, .container-3 .checkmark-3:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+.card-footer{
+    background-color: white !important;
+    text-align: center;
+    border: none !important;
+}
+.btn{
+  background-color: #3279b1;
+  color: white;
+  width: 150px;
+}
+.inputhide{
+  display: none;
+}
+@media (max-width:768px){
+  .card{
+    width: 100%;
+  }
+  .background{
+    padding: 40px 10px;
+  }
+}

@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url('fonts/AvenirLTStd-Medium.otf')format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir LT Std 1";
+  src: url('fonts/AvenirLTStd-Roman.otf')format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Circular";
+  src: url('fonts/CircularStd-Book.woff')format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: white;
+}
+::-webkit-scrollbar-thumb {
+    background: #024c71;
+}
+body{
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+.background{
+  background-image: url("images/water-back.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  position: relative;
+}
+.heading{
+  width: 100%;
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 35vh;
+  position: absolute;
+  font-family: sans-serif;
+}
+.buttons{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+.buttons .btn{
+  margin: 40px;
+  border: 2px solid white;
+  background:transparent;
+  color: white;
+  width: 200px;
+  padding: 10px 0;
+  font-size: 25px;
+  font-family: "Circular";
+}
+.btn:hover{
+  background-color: white;
+  color: #3a7fb6;
+}
+.hideme,#hideout{
+  opacity: 0;
+}
+.about-us{
+  background-color: #1c62a1;
+}
+.about-us .head{
+  color: white;
+  text-align: center;
+  font-size: 60px;
+  padding: 20px;
+  font-weight: bold;
+}
+hr{
+  width: 20%;
+  background-color: white;
+  height: 4px !important;
+}
+.mini-head{
+  color: white;
+  text-align: center;
+  padding: 0 100px;
+  font-family: "Circular";
+  font-size: 20px;
+}
+.content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: "Circular";
+}
+.content div{
+  margin: 40px;
+  color: white;
+  font-size: 20px;
+  width: 40%;
+}
+.line{
+  width: 40%;
+  background-color: white;
+  height: 2px !important;
+}
+.footer{
+  background-color: #043f6c;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  padding: 5px;
+  font-family: "Circular";
+}
+@media (max-width:768px){
+  .heading, .buttons{
+    margin-top: 40px;
+  }
+  .buttons .btn{
+    margin: 20px;
+  }
+  .about-us .head{
+    font-size: 35px;
+  }
+  hr{
+    width: 50%;
+  }
+  .mini-head{
+    padding: 20px;
+  }
+  .content div{
+    width: 100%;
+    text-align: center;
+    margin: 20px;
+  }
+  .line{
+    width: 60%;
+  }
+}
